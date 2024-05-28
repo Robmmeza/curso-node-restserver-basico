@@ -1,14 +1,11 @@
 const { response } = require('express');
 const bcryptjs = require('bcryptjs');
 
-
 const Usuario = require('../models/usuario');
 
 
 
-
 const usuariosGet = async( req, res = response ) => {
-
 
     const query = { estado: true };
     const { limite, desde = 0 } = req.query;
@@ -29,7 +26,6 @@ const usuariosGet = async( req, res = response ) => {
   }
 
   const usuariosPost = async( req, res = response ) => {
-
    
     const { nombre, correo, password, rol } = req.body;
     
@@ -48,6 +44,8 @@ const usuariosGet = async( req, res = response ) => {
         usuario
     })
   }
+
+  
 
   const usuariosPut = async( req, res = response ) => {
 
@@ -80,17 +78,13 @@ const usuariosGet = async( req, res = response ) => {
 
   const usuariosDelete = async( req, res = response ) => {
 
-    const { id } = req.params;
-
-    console.log( id );
-
-    //Fisicamente lo borramos
-
-    // const usuario = await Usuario.findOneAndDelete({ id });
+    const { id } = req.params;     
     const usuario = await Usuario.findOneAndUpdate( { _id: id }  , { estado: false } );
-
-    res.json( usuario );
+    res.json( { usuario } );
   }
+
+
+
 
 
   module.exports = {
