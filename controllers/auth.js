@@ -93,7 +93,7 @@ const googleSignIn = async (req, res = response) => {
             await usuario.save();
         }
 
-        // Usuario estado false en BD
+        // Usuario estado en BD
 
         if (!usuario.estado) {
 
